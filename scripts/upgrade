@@ -102,12 +102,12 @@ then
 	ynh_script_progression --message="Upgrading source files..." --weight=5
 
 	# Frontend
-	ynh_setup_source --dest_dir="$install_dir" --source_id="front"
+	ynh_setup_source --dest_dir="$install_dir" --source_id="front" --full_replace=1
 	
 	# Backend
 	mkdir -p "$backend_path/files"
 	tempdir="$(mktemp -d)"
-	ynh_setup_source --dest_dir=$tempdir --source_id="back"
+	ynh_setup_source --dest_dir=$tempdir --source_id="back" --full_replace=1
 	back="$(find $tempdir -name "vikunja-*" \! -name "*.sha256")"
 	cp "$back" "$backend_path/vikunja"
 fi
